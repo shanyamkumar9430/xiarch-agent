@@ -1,27 +1,25 @@
 
 # Autonomous SOC Security Agent
 
-An AI-powered cybersecurity investigation project built using Python, Google Gemini API, and Flask.
+An AI-powered cybersecurity investigation application built using Python, Google Gemini API, and Flask.
 
-The application demonstrates how an AI agent can investigate suspicious login alerts by reasoning about the alert, selecting suitable tools, analyzing evidence, and generating a security report.
+The project demonstrates how an AI agent can investigate suspicious login alerts, select relevant Python tools, analyze returned evidence, and generate a security investigation report.
 
 ## Project Objective
 
-The objective is to develop an autonomous AI agent that can investigate cybersecurity alerts with minimal human supervision.
-
-The agent uses Gemini function calling to select and execute Python investigation tools dynamically.
+To demonstrate an AI agent that can investigate cybersecurity alerts with minimal human supervision using LLM reasoning and dynamic function calling.
 
 ## Features
 
-- AI-based security alert investigation.
+- AI-powered security alert investigation.
 - Dynamic tool selection using Gemini function calling.
-- Simulated IP address intelligence lookup.
-- Login activity analysis.
+- Simulated IP intelligence lookup.
+- Login activity and failed-attempt analysis.
 - Evidence-based risk assessment.
-- Security recommendations.
+- Defensive security recommendations.
 - Flask web dashboard.
 - Duplicate tool-call protection.
-- Limited investigation steps to avoid endless execution.
+- Bounded investigation loop.
 
 ## Technologies Used
 
@@ -31,55 +29,53 @@ The agent uses Gemini function calling to select and execute Python investigatio
 | Google Gemini API | AI reasoning and tool selection |
 | Google Gen AI SDK | Gemini integration |
 | Flask | Web dashboard |
-| python-dotenv | API key management |
+| python-dotenv | Environment variable management |
 
 ## Project Structure
 
 ```text
 xiarch-agent/
-|
-|-- agent.py
-|-- app.py
-|-- requirements.txt
-|-- README.md
-|-- .gitignore
-|
-|-- tools/
-    |-- __init__.py
-    |-- ip_lookup.py
-    |-- log_analyzer.py
+├── agent.py
+├── app.py
+├── requirements.txt
+├── README.md
+├── .env.example
+├── .gitignore
+└── tools/
+    ├── __init__.py
+    ├── ip_lookup.py
+    └── log_analyzer.py
 ```
 
 ## How It Works
 
-1. A user submits a suspicious security alert.
+1. The user submits a suspicious security alert.
 2. Gemini analyzes the alert and decides which tools are useful.
 3. Python executes the selected investigation tools.
 4. Tool results are returned to Gemini.
-5. Gemini analyzes the collected evidence.
-6. The final investigation report appears on the dashboard.
+5. Gemini reasons over the collected evidence.
+6. The final investigation report is displayed on the Flask dashboard.
 
 ## Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/shanyamkumar9430/xiarch-agent.git
 cd xiarch-agent
 ```
 
-Replace the placeholder with the actual GitHub repository URL.
-
-### 2. Create a virtual environment
+### 2. Create and activate a virtual environment
 
 ```bash
 python3 -m venv venv
+source venv/bin/activate
 ```
 
-Activate it:
+On Windows, activate using:
 
 ```bash
-source venv/bin/activate
+venv\Scripts\activate
 ```
 
 ### 3. Install dependencies
@@ -90,15 +86,19 @@ pip install -r requirements.txt
 
 ### 4. Configure the Gemini API key
 
-Create a `.env` file in the project directory and add:
+Copy `.env.example` to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+Open `.env` and add your own Gemini API key:
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Replace the placeholder with your own API key.
-
-Never upload the `.env` file or share your API key publicly.
+Never upload your actual `.env` file or share your API key publicly.
 
 ### 5. Run the application
 
@@ -106,11 +106,9 @@ Never upload the `.env` file or share your API key publicly.
 python app.py
 ```
 
-Open your browser and visit:
+Open your browser:
 
-```text
 http://127.0.0.1:5000
-```
 
 ## Sample Security Alert
 
@@ -126,11 +124,12 @@ Submit this alert through the dashboard to test the investigation.
 
 ## Security and Limitations
 
-- IP intelligence and login events currently use simulated databases.
-- The project does not connect to live threat intelligence services.
+- IP intelligence and login events use simulated databases.
+- No live threat intelligence service is currently connected.
 - The agent performs read-only investigations.
-- It does not block IP addresses or modify security configurations.
-- AI-generated risk assessments are recommendations and require human review.
+- It does not block IP addresses or modify firewall configurations.
+- AI-generated risk assessments are advisory and require human review.
+- The sample data does not establish that an attack was successful.
 - API credentials must remain private.
 
 ## Future Improvements
@@ -145,4 +144,4 @@ Submit this alert through the dashboard to test the investigation.
 
 Developed as a practical demonstration for the Agentic AI Engineer Intern recruitment assessment at Xiarch Bharat Pvt. Ltd.
 
-The project demonstrates autonomous AI reasoning, function calling, Python tool integration, and cybersecurity investigation.
+The project demonstrates LLM-based reasoning, dynamic function calling, Python tool integration, and AI-assisted cybersecurity investigation.
